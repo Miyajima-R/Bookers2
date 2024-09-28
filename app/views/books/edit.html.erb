@@ -1,0 +1,49 @@
+ <div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-xl-6">
+<%= form_with model: @book, url: book_path(@book), method: :patch do |f| %>
+
+  <div class="row mt-3">
+   <div class="btn-wrapper col-11 mx-auto">
+     <h1 class="mt-2">Editing Book</h1>
+     <%= flash[:notice] %>
+     <%= flash[:success] %>
+     <%= flash[:error] %>
+     <% if @book.errors.any? %>
+     <div id="error_explanation">
+       <h2><%= pluralize(@book.errors.count, "error") %> prohibited this user from being saved:</h2>
+       <ul>
+       <% @book.errors.each do |error| %>
+       <li><%= error.full_message %></li>
+       <% end %>
+       </ul>
+      </div>
+     <% end %>
+    </div>
+   <div class="btn-wrapper col-11 mx-auto">
+      <%= form_with model: @book do |f| %>
+      <div>
+        <label for="inputtitle">Title</label>
+        <%= f.text_field :title, class: 'form-control form-control-lg' %>
+      </div>
+     <div>
+       <label for="inputopinion">Opinion</label>
+       <%= f.text_area :body, class: 'form-control form-control-lg' %>
+     </div>
+     <% end %>
+     <div class="actions mt-3">
+       <%= f.submit "Update Book", class: "btn btn-sm btn-success" %></div>
+      <tr>
+       <td style="display: flex;">
+          <a href="<%= book_path(@book) %>" class="link-primary" style="text-decoration: none;">Show</a>
+         <a class="vr" style="border-left: 1px solid blue; height: 20px;"></a>
+        <a href="<%= "/books" %>"  method: :get class="link-primary" style="text-decoration: none;">Back</a>
+       </td>
+      </tr>
+    </div>
+   </div>
+
+<% end %>
+    </div>
+  </div>
+</div>
